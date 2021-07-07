@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
+    "predeploy": "npm run build && npm run export && chmod -R 755 out",
+    "deploy": "gh-pages -d out -t true",
     "start": "next start",
     "lint": "next lint",
     "generate-documents": "gqlg --schemaFilePath ../graphql/schema.graphql --destDirPath ./generated/documents --depthLimit 5",
@@ -25,6 +28,7 @@
     "@types/react": "17.0.13",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
+    "gh-pages": "^3.2.3",
     "typescript": "4.3.5"
   }
 }
