@@ -1,0 +1,9 @@
+mutation addCustomer($name: String!, $email: String!, $phoneNumber: String){
+    addCustomer(name: $name, email: $email, phoneNumber: $phoneNumber){
+        name
+        email
+        phoneNumber
+        issuer
+        credits
+    }
+}

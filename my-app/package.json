@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "schema:generate-documents": "gqlg --schemaFilePath ../graphql/schema.graphql --destDirPath ./generated/documents --depthLimit 5",
+    "schema:generate": "npm run schema:generate-documents && graphql-codegen "
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
