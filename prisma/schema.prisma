@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model booking {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt  DateTime  @default(now()) @db.Timestamp(6)
+  customerId Int?
+  resourceId Int
+  startTime  DateTime  @db.Timestamp(6)
+  endTime    DateTime  @db.Timestamp(6)
+  canceled   Boolean   @default(false)
+  comment    String?   @db.VarChar
+  seatNumber Int?
+  customer   customer? @relation(fields: [customerId], references: [id])
+  resource   resource  @relation(fields: [resourceId], references: [id])
+}
+
+model customer {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt   DateTime  @default(now()) @db.Timestamp(6)
+  name        String?   @db.VarChar
+  email       String    @unique @db.VarChar
+  phoneNumber String?   @db.VarChar
+  issuer      String?   @unique @db.VarChar
+  credits     Int?      @default(0)
+  enabled     Boolean   @default(true)
+  booking     booking[]
+}
+
+model resource {
+  id                  Int       @id @default(autoincrement())
+  createdAt           DateTime  @default(now()) @db.Timestamp(6)
+  updatedAt           DateTime  @default(now()) @db.Timestamp(6)
+  category            String?   @db.VarChar
+  label               String    @db.VarChar
+  opensAt             DateTime  @db.Timestamp(6)
+  closesAt            DateTime  @db.Timestamp(6)
+  slotIntervalMinutes Int?      @default(30)
+  slotDurationMinutes Int?      @default(60)
+  seats               Int
+  enabled             Boolean   @default(true)
+  booking             booking[]
+}
