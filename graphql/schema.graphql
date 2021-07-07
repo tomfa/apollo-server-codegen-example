@@ -1,0 +1,29 @@
+type Customer {
+    name: String
+    email: String!
+    phoneNumber: String
+    issuer: String
+    credits: Int
+}
+type Resource {
+    category: String
+    label: String!
+    slotIntervalMinutes: Int
+    slotDurationMinutes: Int
+    seats: Int!
+}
+type Booking {
+    customerId: Int
+    resourceId: Int!
+    comment: String
+    seatNumber: Int
+}
+
+type Query {
+    getCustomerByEmail(email: String!): Customer
+}
+
+type Mutation {
+    addCustomer(name: String!, email: String!, phoneNumber: String): Customer
+}
+
