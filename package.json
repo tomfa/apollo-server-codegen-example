@@ -1,6 +1,10 @@
 {
   "name": "codegen-example",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^2.26.0",
+    "prisma": "^2.26.0"
+  }
 }
